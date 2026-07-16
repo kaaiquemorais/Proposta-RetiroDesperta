@@ -104,10 +104,11 @@
 
   /* ---- Stage ---- */
   .stage{
-    flex:1; min-height:0; position:relative;
+    flex:1; min-height:0; min-width:0; position:relative; overflow:hidden;
     display:flex; align-items:center; justify-content:center;
     padding:0 20px;
   }
+  @media (max-width:480px){ .stage{ padding:0 14px; } }
   .step{
     position:absolute; inset:0;
     display:flex; align-items:center; justify-content:center;
@@ -124,7 +125,7 @@
     .step{ transition:opacity 0.15s linear; transform:none; }
   }
   .panel{
-    width:100%; max-width:760px; max-height:100%;
+    width:100%; max-width:760px; max-height:100%; min-width:0;
     overflow-y:auto; overflow-x:hidden;
     padding:8px 4px 12px;
   }
@@ -152,7 +153,7 @@
   /* ---- Intro questions ---- */
   .q-index{
     text-align:center; font-size:0.76rem; color:var(--ink-dim);
-    letter-spacing:0.06em; margin:0 0 22px;
+    letter-spacing:0.06em; margin:0 0 22px; white-space:nowrap;
   }
   .question-text{
     font-size:clamp(1.6rem,4.6vw,2.6rem); font-weight:600; line-height:1.32;
@@ -259,35 +260,33 @@
   /* ---- Bottom nav ---- */
   .navbar{
     flex:none; display:flex; align-items:center; justify-content:space-between;
-    padding:16px 24px 10px; gap:12px;
+    padding:16px 24px 22px; gap:12px;
   }
   .navbtn{
     font-family:'Poppins',sans-serif; font-size:0.88rem; font-weight:500;
     padding:11px 20px; border-radius:999px; border:1px solid var(--line);
     background:transparent; color:var(--ink-soft); cursor:pointer;
+    white-space:nowrap;
     transition:opacity 0.2s ease, background 0.2s ease, color 0.2s ease;
   }
   .navbtn:hover{ background:rgba(245,238,252,0.06); color:var(--ink); }
   .navbtn:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
-  .navbtn:disabled{ opacity:0; pointer-events:none; }
+  .navbtn:disabled{ opacity:0; pointer-events:none; width:0; min-width:0; padding-left:0; padding-right:0; border:0; overflow:hidden; }
   .navbtn.primary{
     background:linear-gradient(120deg, var(--accent), var(--accent-deep));
     color:#fff; border:none; font-weight:600;
     padding:11px 26px;
   }
-  .step-count{ font-size:0.74rem; color:var(--ink-dim); letter-spacing:0.05em; font-variant-numeric:tabular-nums; }
+  .step-count{ font-size:0.74rem; color:var(--ink-dim); letter-spacing:0.05em; font-variant-numeric:tabular-nums; white-space:nowrap; }
+  .step-count:empty{ display:none; }
 
-  /* ---- Persistent footer ---- */
-  .appfooter{
-    flex:none; display:flex; align-items:center; justify-content:center;
-    gap:10px; flex-wrap:wrap; padding:0 24px 18px;
-    font-family:'Poppins',sans-serif; font-size:0.76rem; color:var(--ink-soft);
-    text-align:center;
+  @media (max-width:480px){
+    .navbar{ padding:14px 16px 20px; gap:8px; }
+    .navbtn{ font-size:0.82rem; padding:10px 16px; }
+    .navbtn.primary{ padding:10px 18px; }
   }
-  .appfooter b{ color:var(--ink); font-weight:600; }
-  .appfooter .sep{ width:1px; height:11px; background:var(--line); }
-  @media (max-width:520px){
-    .appfooter{ font-size:0.68rem; gap:7px; }
+  @media (max-width:360px){
+    .navbtn{ font-size:0.78rem; padding:10px 13px; }
   }
 </style>
 </head>
@@ -448,6 +447,9 @@
             Baixar Proposta em PDF
           </a>
         </div>
+        <div class="final-contact">
+          <b>Kaique Morais</b><span class="sep"></span><span>(19) 97145-4713</span><span class="sep"></span><span>Avyxyva · Marketing Digital</span>
+        </div>
       </div>
     </section>
 
@@ -458,10 +460,6 @@
     <span class="step-count" id="stepCount">1 / 7</span>
     <button class="navbtn primary" id="btnNext">Próximo</button>
   </div>
-
-  <footer class="appfooter">
-    <b>Kaique Morais</b><span class="sep"></span><span>(19) 97145-4713</span><span class="sep"></span><span>Avyxyva · Marketing Digital</span>
-  </footer>
 
 </div>
 
@@ -506,12 +504,12 @@
     });
     btnBack.disabled = current === 0;
     if(inIntro){
-      stepCount.textContent = 'Pergunta ' + (current + 1) + ' de ' + introCount;
+      stepCount.textContent = '';
     } else {
       stepCount.textContent = (current - introCount + 1) + ' / ' + (total - introCount);
     }
     if(current === total - 1){
-      btnNext.textContent = 'Baixar Proposta em PDF';
+      btnNext.textContent = 'Baixar PDF';
     } else if(nextLabels.hasOwnProperty(current)){
       btnNext.textContent = nextLabels[current];
     } else {
