@@ -259,7 +259,7 @@
   /* ---- Bottom nav ---- */
   .navbar{
     flex:none; display:flex; align-items:center; justify-content:space-between;
-    padding:16px 24px 22px; gap:12px;
+    padding:16px 24px 10px; gap:12px;
   }
   .navbtn{
     font-family:'Poppins',sans-serif; font-size:0.88rem; font-weight:500;
@@ -276,6 +276,19 @@
     padding:11px 26px;
   }
   .step-count{ font-size:0.74rem; color:var(--ink-dim); letter-spacing:0.05em; font-variant-numeric:tabular-nums; }
+
+  /* ---- Persistent footer ---- */
+  .appfooter{
+    flex:none; display:flex; align-items:center; justify-content:center;
+    gap:10px; flex-wrap:wrap; padding:0 24px 18px;
+    font-family:'Poppins',sans-serif; font-size:0.76rem; color:var(--ink-soft);
+    text-align:center;
+  }
+  .appfooter b{ color:var(--ink); font-weight:600; }
+  .appfooter .sep{ width:1px; height:11px; background:var(--line); }
+  @media (max-width:520px){
+    .appfooter{ font-size:0.68rem; gap:7px; }
+  }
 </style>
 </head>
 <body>
@@ -331,7 +344,7 @@
         <p class="eyebrow">Entendimento do projeto</p>
         <h2 class="step-title">Um retiro de dois dias,<br>feito para ser lembrado</h2>
         <p class="lede">O 1º Retiro Desperta reúne a turma de Catequese de Perseverança e Crisma em uma programação intensa de sábado a domingo, da recepção à Santa Missa de encerramento, passando por pregações, adoração ao Santíssimo, o Lual Desperta, dinâmicas de grupo e o Rito do Envio.</p>
-        <p class="center-note">São momentos que acontecem uma única vez: uma pergunta que fica no silêncio da capela, um abraço na hora do testemunho, a fila de tochas na noite de sábado. Esta proposta é para registrar esse retiro por inteiro, em fotos, em vídeo e do alto, para que a comunidade possa reviver o que foi vivido.</p>
+        <p class="center-note">São momentos que acontecem uma única vez: uma pergunta que fica no silêncio da oração, um abraço na hora do testemunho, a fila de tochas na noite de sábado. Esta proposta é para registrar esse retiro por inteiro, em fotos, em vídeo e do alto, para que a comunidade possa reviver o que foi vivido.</p>
       </div>
     </section>
 
@@ -435,9 +448,6 @@
             Baixar Proposta em PDF
           </a>
         </div>
-        <div class="final-contact">
-          <b>Kaique Morais</b><span class="sep"></span><span>(19) 97145-4713</span><span class="sep"></span><span>Avyxyva · Marketing Digital</span>
-        </div>
       </div>
     </section>
 
@@ -448,6 +458,10 @@
     <span class="step-count" id="stepCount">1 / 7</span>
     <button class="navbtn primary" id="btnNext">Próximo</button>
   </div>
+
+  <footer class="appfooter">
+    <b>Kaique Morais</b><span class="sep"></span><span>(19) 97145-4713</span><span class="sep"></span><span>Avyxyva · Marketing Digital</span>
+  </footer>
 
 </div>
 
