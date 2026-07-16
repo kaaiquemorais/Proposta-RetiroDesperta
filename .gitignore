@@ -3,9 +3,10 @@
 *.png
 *.pdf
 
-# Exceções: imagens usadas pelo site
+# Exceções: arquivos servidos pelo site
 !favicon.png
 !og-image.png
+!Proposta-Retiro-Desperta.pdf
 
 # Local Netlify folder
 .netlify
