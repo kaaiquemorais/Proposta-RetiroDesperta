@@ -2,3 +2,10 @@
 *.docx
 *.png
 *.pdf
+
+# Exceções: imagens usadas pelo site
+!favicon.png
+!og-image.png
+
+# Local Netlify folder
+.netlify
